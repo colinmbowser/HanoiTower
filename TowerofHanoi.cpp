@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -19,10 +20,23 @@ int getNum()
 
 void TowerofHanoi()
 {
+    stack<int> firstRing;
+    stack<int> secondRing;
+    stack<int> thirdRing;
+
     int blockAmount = getNum();
 
+    for (int i = 0; i < blockAmount; i++)
+    {
+        firstRing.push(i+1);
+        cout << firstRing.top();
+    }
+    firstRing.pop();
+    firstRing.pop();
+    cout << endl << firstRing.top();
 
-    cout << blockAmount;
+
+    cout << endl << blockAmount;
 
 }
 
