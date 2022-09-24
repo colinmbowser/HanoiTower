@@ -25,17 +25,47 @@ void TowerofHanoi()
     stack<int> thirdRing;
 
     int blockAmount = getNum();
+    int newHighest = blockAmount;
 
     for (int i = 0; i < blockAmount; i++)
     {
         firstRing.push(i+1);
-        cout << firstRing.top();
+        cout << firstRing.top() << ' ';
     }
-    firstRing.pop();
-    firstRing.pop();
+
+    while (!(firstRing.empty() && secondRing.empty()))
+    {
+        while(newHighest != 0)
+        {
+            if (blockAmount == 12)
+            {
+                cout << "error on line 39";
+            }
+            /*else if (thirdRing.empty() && (firstRing.top() == newHighest || secondRing.top() == newHighest))
+            {
+                cout << "blocks should move";
+            }*/
+            else if ((thirdRing.empty() || thirdRing.top() > newHighest /*|| thirdRing.empty()*/) && (firstRing.top() == newHighest || secondRing.top() == newHighest))
+            {
+                cout << "blocks should move";
+                newHighest--;
+            }
+            else 
+            {
+                cout << "ERROR! SHOULD NEVER SEE THIS ERROR!";
+            }
+        }
+    }
+
+    
+    /*
+    while (!(firstRing.empty() && secondRing.empty()))
+    {
     cout << endl << firstRing.top();
-
-
+    firstRing.pop();
+    firstRing.pop();
+    }
+    */
     cout << endl << blockAmount;
 
 }
