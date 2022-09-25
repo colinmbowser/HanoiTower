@@ -27,9 +27,13 @@ void TowerofHanoi()
     int blockAmount = getNum();
     int newHighest = blockAmount;
 
-    for (int i = 0; i < blockAmount; i++)
+    int first;
+    int second;
+    int third;
+
+    for (int i = blockAmount; i > 0; i--)
     {
-        firstRing.push(i+1);
+        firstRing.push(i);
         cout << firstRing.top() << ' ';
     }
 
@@ -37,24 +41,34 @@ void TowerofHanoi()
     {
         while(newHighest != 0)
         {
-            if (blockAmount == 12)
-            {
-                cout << "error on line 39";
-            }
+            
+            // will make variables equal to the top block of each stack,
+            // unless there is no top block in a stack then it will equal to 0.
+            if (!(firstRing.empty())) {first = firstRing.top();}
+            else {first = 0;}
+            if (secondRing.empty()) {second = 0;}
+            else {second = secondRing.top();}
+            if (thirdRing.empty()) {third = 0;}
+            else {third = thirdRing.top();}
+
             /*else if (thirdRing.empty() && (firstRing.top() == newHighest || secondRing.top() == newHighest))
             {
                 cout << "blocks should move";
             }*/
-            else if ((thirdRing.empty() || thirdRing.top() > newHighest /*|| thirdRing.empty()*/) && (firstRing.top() == newHighest || secondRing.top() == newHighest))
+            if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
                 cout << "blocks should move";
                 newHighest--;
+                cout << endl << newHighest;
+                continue;
             }
             else 
             {
                 cout << "ERROR! SHOULD NEVER SEE THIS ERROR!";
             }
+            break;
         }
+        break;
     }
 
     
