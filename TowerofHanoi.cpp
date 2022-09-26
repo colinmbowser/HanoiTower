@@ -18,6 +18,53 @@ int getNum()
     return blockInputAmount;
 }
 
+void printAllStacks(stack<int> firstRing, stack<int> secondRing, stack<int> thirdRing)
+{
+    stack<int> fakeFirstRing = firstRing;
+    stack<int> fakeSecondRing = secondRing;
+    stack<int> fakeThirdRing = thirdRing;
+
+    stack<int> outputFirstRing;
+    stack<int> outputSecondRing;
+    stack<int> outputThirdRing;
+    
+    while (!(fakeFirstRing.empty()))
+    {
+        outputFirstRing.push(fakeFirstRing.top());
+        fakeFirstRing.pop();
+    }
+    while (!(fakeSecondRing.empty()))
+    {
+        outputSecondRing.push(fakeSecondRing.top());
+        fakeSecondRing.pop();
+    }
+    while (!(fakeThirdRing.empty()))
+    {
+        outputThirdRing.push(fakeThirdRing.top());
+        fakeThirdRing.pop();
+    }
+
+    cout << "First Ring: ";
+    while(!(outputFirstRing.empty()))
+    {
+        cout << outputFirstRing.top() << " ";
+        outputFirstRing.pop();
+    }
+    cout << endl << "Second Ring: ";
+    while(!(outputSecondRing.empty()))
+    {
+        cout << outputSecondRing.top() << " ";
+        outputSecondRing.pop();
+    }
+    cout << endl << "Third Ring: ";
+    while(!(outputThirdRing.empty()))
+    {
+        cout << outputThirdRing.top() << " ";
+        outputThirdRing.pop();
+    }
+    cout << endl;
+}
+
 void TowerofHanoi()
 {
     stack<int> firstRing;
@@ -36,12 +83,13 @@ void TowerofHanoi()
         firstRing.push(i);
         cout << firstRing.top() << ' ';
     }
-
+    cout << endl;
+    
     while (!(firstRing.empty() && secondRing.empty()))
     {
         while(newHighest != 0)
         {
-            
+
             // will make variables equal to the top block of each stack,
             // unless there is no top block in a stack then it will equal to 0.
             if (!(firstRing.empty())) {first = firstRing.top();}
@@ -50,6 +98,8 @@ void TowerofHanoi()
             else {second = secondRing.top();}
             if (thirdRing.empty()) {third = 0;}
             else {third = thirdRing.top();}
+
+            printAllStacks(firstRing, secondRing, thirdRing);
 
             if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
@@ -77,7 +127,6 @@ void TowerofHanoi()
     }
     */
     cout << endl << blockAmount;
-
 }
 
 int main()
