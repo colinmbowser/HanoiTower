@@ -51,10 +51,6 @@ void TowerofHanoi()
             if (thirdRing.empty()) {third = 0;}
             else {third = thirdRing.top();}
 
-            /*else if (thirdRing.empty() && (firstRing.top() == newHighest || secondRing.top() == newHighest))
-            {
-                cout << "blocks should move";
-            }*/
             if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
                 cout << "blocks should move";
