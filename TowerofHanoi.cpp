@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stack>
+#include <thread>
 
 using namespace std;
+using namespace chrono_literals;
 
 class myStack
 {
@@ -84,10 +86,10 @@ void TowerofHanoi()
             // unless there is no top block in a stack then it will equal to 0.
             if (!(firstRing.ringStack.empty())) {first = firstRing.ringStack.top();}
             else {first = 0;}
-            if (secondRing.ringStack.empty()) {second = 0;}
-            else {second = secondRing.ringStack.top();}
-            if (thirdRing.ringStack.empty()) {third = 0;}
-            else {third = thirdRing.ringStack.top();}
+            if (!(secondRing.ringStack.empty())) {second = secondRing.ringStack.top();}
+            else {second = 0;}
+            if (!(thirdRing.ringStack.empty())) {third = thirdRing.ringStack.top();}
+            else {third = 0;}
 
             if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
@@ -109,8 +111,17 @@ void TowerofHanoi()
     firstRing.pop();
     firstRing.pop();
     }
+
+    //will clear terminal by adding 50 empty lines of code
+    cout << string(50, '\n' );
+
+    //will pause the code for 1000 ms (1 second) and then resume
+    this_thread::sleep_for(1000ms);
+
+
     */
-    cout << endl << blockAmount;
+    cout << blockAmount;
+
 }
 
 int main()

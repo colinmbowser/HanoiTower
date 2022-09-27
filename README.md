@@ -13,14 +13,18 @@
 # Development Environment
 
 {Describe the tools that you used to develop the software}
+I saw the tower of hanoi in a movie and thought it would be fun to create a program that could solve it. I used visual studio code to make this program.
 
 {Describe the programming language that you used and any libraries.}
+I used C++ with iostream, stack, thread and chrono libraries included to make this program.
 
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
 * [Tower of Hanoi Wikipedia](https://en.wikipedia.org/wiki/Tower_of_Hanoi)
-* [Web Site Name](http://url.link.goes.here)
+* [C++ Classes and Objects W3 Schools](https://www.w3schools.com/cpp/cpp_classes.asp)
+* [Geeks for Geeks](https://www.geeksforgeeks.org/stack-in-cpp-stl/)
+* [cppreference sleep_for](https://en.cppreference.com/w/cpp/thread/sleep_for)
 
 # Future Work
 
