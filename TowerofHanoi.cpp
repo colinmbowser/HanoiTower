@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stack>
 #include <thread>
+#include <chrono>
 
 using namespace std;
-using namespace chrono_literals;
 
 class myStack
 {
@@ -36,7 +36,7 @@ void printStack(string ringName, stack<int> fakeRing)
     outputRing.push(fakeRing.top());
     fakeRing.pop();
     }
-    cout << ringName << "Ring: ";
+    cout << ringName << " Ring: ";
     while(!(outputRing.empty()))
     {
         cout << outputRing.top() << " ";
@@ -52,76 +52,98 @@ void printAllStacks(string firstRingName, stack<int> newFirstRing, string second
     printStack(thirdRingName, newThirdRing);
 }
 
+    // will make variables equal to the top block of each stack,
+    // unless there is no top block in a stack then it will equal to .
+int changeNum(stack<int> changeNumStack)
+{
+    int newNumber = 0;
+    if (!(changeNumStack.empty())) 
+    {newNumber = changeNumStack.top();}
+    return newNumber;
+}
+
 void TowerofHanoi()
 {
     myStack firstRing;
     myStack secondRing;
     myStack thirdRing;
 
-    firstRing.ringName = "First";
+    firstRing.ringName = " First";
     secondRing.ringName = "Second";
-    thirdRing.ringName = "Third";
+    thirdRing.ringName = " Third";
 
     int blockAmount = getNum();
-    int newHighest = blockAmount;
-
-    int first;
-    int second;
-    int third;
-    printAllStacks(firstRing.ringName, firstRing.ringStack, secondRing.ringName, secondRing.ringStack, thirdRing.ringName, thirdRing.ringStack);
 
     for (int i = blockAmount; i > 0; i--)
     {
         firstRing.ringStack.push(i);
-        cout << firstRing.ringStack.top() << ' ';
     }
-    cout << endl;
+
+    int switchMaster;
+    int first = changeNum(firstRing.ringStack);
+    int second = changeNum(secondRing.ringStack);
+    int third = changeNum(thirdRing.ringStack);
+    //cout << first;
 
     while (!(firstRing.ringStack.empty() && secondRing.ringStack.empty()))
     {
-        while(newHighest != 0)
+        if ((second > first || second == 0) && first != 0)
         {
-
-            // will make variables equal to the top block of each stack,
-            // unless there is no top block in a stack then it will equal to 0.
-            if (!(firstRing.ringStack.empty())) {first = firstRing.ringStack.top();}
-            else {first = 0;}
-            if (!(secondRing.ringStack.empty())) {second = secondRing.ringStack.top();}
-            else {second = 0;}
-            if (!(thirdRing.ringStack.empty())) {third = thirdRing.ringStack.top();}
-            else {third = 0;}
-
-            if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
-            {
-                cout << "blocks should move";
-                newHighest--;
-                cout << endl << newHighest;
-                continue;
-            }
-            break;
+            secondRing.ringStack.push(firstRing.ringStack.top());
+            firstRing.ringStack.pop();
         }
-        break;
+        else if ((first > second || first == 0) && second != 0)
+        {
+            firstRing.ringStack.push(secondRing.ringStack.top());
+            secondRing.ringStack.pop();
+        }
+        cout << string(20, '\n' );
+        printAllStacks(firstRing.ringName, firstRing.ringStack, secondRing.ringName, secondRing.ringStack, thirdRing.ringName, thirdRing.ringStack);
+        first = changeNum(firstRing.ringStack);
+        second = changeNum(secondRing.ringStack);
+        this_thread::sleep_for(1000ms);
+
+        if ((third > first || third == 0) && first != 0)
+        {
+            thirdRing.ringStack.push(firstRing.ringStack.top());
+            firstRing.ringStack.pop();
+        }
+        else if ((first > third || first == 0) && third != 0)
+        {
+            firstRing.ringStack.push(thirdRing.ringStack.top());
+            thirdRing.ringStack.pop();
+        }
+        cout << string(20, '\n' );
+        printAllStacks(firstRing.ringName, firstRing.ringStack, secondRing.ringName, secondRing.ringStack, thirdRing.ringName, thirdRing.ringStack);
+        first = changeNum(firstRing.ringStack);
+        third = changeNum(thirdRing.ringStack);
+        this_thread::sleep_for(1000ms);
+
+        if ((third > second || third == 0) && second != 0)
+        {
+            thirdRing.ringStack.push(secondRing.ringStack.top());
+            secondRing.ringStack.pop();
+        }
+        else if ((second > third || second == 0) && third != 0)
+        {
+            secondRing.ringStack.push(thirdRing.ringStack.top());
+            thirdRing.ringStack.pop();
+        }
+        cout << string(20, '\n' );
+        printAllStacks(firstRing.ringName, firstRing.ringStack, secondRing.ringName, secondRing.ringStack, thirdRing.ringName, thirdRing.ringStack);
+        second = changeNum(secondRing.ringStack);
+        third = changeNum(thirdRing.ringStack);
+        this_thread::sleep_for(1000ms);
     }
 
     
     /*
-    while (!(firstRing.empty() && secondRing.empty()))
-    {
-    cout << endl << firstRing.top();
-    firstRing.pop();
-    firstRing.pop();
-    }
-
     //will clear terminal by adding 50 empty lines of code
     cout << string(50, '\n' );
 
     //will pause the code for 1000 ms (1 second) and then resume
     this_thread::sleep_for(1000ms);
-
-
     */
-    cout << blockAmount;
-
 }
 
 int main()
