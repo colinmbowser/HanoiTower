@@ -18,30 +18,29 @@ int getNum()
     return blockInputAmount;
 }
 
-void printAllStacks(stack<int> fakeFirstRing, stack<int> fakeSecondRing, stack<int> fakeThirdRing)
+void printAllStacks(stack<int> newFirstRing, stack<int> newSecondRing, stack<int> newThirdRing)
 {
     stack<int> outputRing;
     stack<int> fakeRing;
     
     for (int i = 0; i < 3; i++)
     {
-        stack<int> outputRing;
-
         if(i == 0)
         {
-            fakeRing = fakeFirstRing;
+            fakeRing = newFirstRing;
             cout << "First Ring: ";
         }
         else if(i == 1)
         {
-            fakeRing = fakeSecondRing;
+            fakeRing = newSecondRing;
             cout << "Second Ring: ";
         }
         else if(i == 2)
         {
-            fakeRing = fakeThirdRing;
+            fakeRing = newThirdRing;
             cout << "Third Ring: ";
         }
+
         while (!(fakeRing.empty()))
         {
         outputRing.push(fakeRing.top());
@@ -69,6 +68,7 @@ void TowerofHanoi()
     int first;
     int second;
     int third;
+    printAllStacks(firstRing, secondRing, thirdRing);
 
     for (int i = blockAmount; i > 0; i--)
     {
@@ -90,9 +90,6 @@ void TowerofHanoi()
             else {second = secondRing.top();}
             if (thirdRing.empty()) {third = 0;}
             else {third = thirdRing.top();}
-
-            printAllStacks(firstRing, secondRing, thirdRing);
-            cout << firstRing.top();
 
             if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
