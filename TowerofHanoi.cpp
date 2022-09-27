@@ -3,6 +3,13 @@
 
 using namespace std;
 
+class myStack
+{
+    public:
+        string ringName;
+        stack<int> ringStack;
+};
+
 int getNum()
 {
     int blockInputAmount = 0;
@@ -18,49 +25,40 @@ int getNum()
     return blockInputAmount;
 }
 
-void printAllStacks(stack<int> newFirstRing, stack<int> newSecondRing, stack<int> newThirdRing)
+void printStack(string ringName, stack<int> fakeRing)
 {
     stack<int> outputRing;
-    stack<int> fakeRing;
-    
-    for (int i = 0; i < 3; i++)
+
+    while (!(fakeRing.empty()))
     {
-        if(i == 0)
-        {
-            fakeRing = newFirstRing;
-            cout << "First Ring: ";
-        }
-        else if(i == 1)
-        {
-            fakeRing = newSecondRing;
-            cout << "Second Ring: ";
-        }
-        else if(i == 2)
-        {
-            fakeRing = newThirdRing;
-            cout << "Third Ring: ";
-        }
-
-        while (!(fakeRing.empty()))
-        {
-        outputRing.push(fakeRing.top());
-        fakeRing.pop();
-        }
-
-        while(!(outputRing.empty()))
-        {
-            cout << outputRing.top() << " ";
-            outputRing.pop();
-        }
-        cout << endl;
+    outputRing.push(fakeRing.top());
+    fakeRing.pop();
     }
+    cout << ringName << "Ring: ";
+    while(!(outputRing.empty()))
+    {
+        cout << outputRing.top() << " ";
+        outputRing.pop();
+    }
+    cout << endl;
+}
+
+void printAllStacks(string firstRingName, stack<int> newFirstRing, string secondRingName, stack<int> newSecondRing, string thirdRingName, stack<int> newThirdRing)
+{
+    printStack(firstRingName, newFirstRing);
+    printStack(secondRingName, newSecondRing);
+    printStack(thirdRingName, newThirdRing);
 }
 
 void TowerofHanoi()
 {
-    stack<int> firstRing;
-    stack<int> secondRing;
-    stack<int> thirdRing;
+    myStack firstRing;
+    myStack secondRing;
+    myStack thirdRing;
+
+    firstRing.ringName = "First";
+    secondRing.ringName = "Second";
+    thirdRing.ringName = "Third";
 
     int blockAmount = getNum();
     int newHighest = blockAmount;
@@ -68,28 +66,28 @@ void TowerofHanoi()
     int first;
     int second;
     int third;
-    printAllStacks(firstRing, secondRing, thirdRing);
+    printAllStacks(firstRing.ringName, firstRing.ringStack, secondRing.ringName, secondRing.ringStack, thirdRing.ringName, thirdRing.ringStack);
 
     for (int i = blockAmount; i > 0; i--)
     {
-        firstRing.push(i);
-        cout << firstRing.top() << ' ';
+        firstRing.ringStack.push(i);
+        cout << firstRing.ringStack.top() << ' ';
     }
     cout << endl;
 
-    while (!(firstRing.empty() && secondRing.empty()))
+    while (!(firstRing.ringStack.empty() && secondRing.ringStack.empty()))
     {
         while(newHighest != 0)
         {
 
             // will make variables equal to the top block of each stack,
             // unless there is no top block in a stack then it will equal to 0.
-            if (!(firstRing.empty())) {first = firstRing.top();}
+            if (!(firstRing.ringStack.empty())) {first = firstRing.ringStack.top();}
             else {first = 0;}
-            if (secondRing.empty()) {second = 0;}
-            else {second = secondRing.top();}
-            if (thirdRing.empty()) {third = 0;}
-            else {third = thirdRing.top();}
+            if (secondRing.ringStack.empty()) {second = 0;}
+            else {second = secondRing.ringStack.top();}
+            if (thirdRing.ringStack.empty()) {third = 0;}
+            else {third = thirdRing.ringStack.top();}
 
             if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
