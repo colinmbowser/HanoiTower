@@ -18,51 +18,43 @@ int getNum()
     return blockInputAmount;
 }
 
-void printAllStacks(stack<int> firstRing, stack<int> secondRing, stack<int> thirdRing)
+void printAllStacks(stack<int> fakeFirstRing, stack<int> fakeSecondRing, stack<int> fakeThirdRing)
 {
-    stack<int> fakeFirstRing = firstRing;
-    stack<int> fakeSecondRing = secondRing;
-    stack<int> fakeThirdRing = thirdRing;
-
-    stack<int> outputFirstRing;
-    stack<int> outputSecondRing;
-    stack<int> outputThirdRing;
+    stack<int> outputRing;
+    stack<int> fakeRing;
     
-    while (!(fakeFirstRing.empty()))
+    for (int i = 0; i < 3; i++)
     {
-        outputFirstRing.push(fakeFirstRing.top());
-        fakeFirstRing.pop();
-    }
-    while (!(fakeSecondRing.empty()))
-    {
-        outputSecondRing.push(fakeSecondRing.top());
-        fakeSecondRing.pop();
-    }
-    while (!(fakeThirdRing.empty()))
-    {
-        outputThirdRing.push(fakeThirdRing.top());
-        fakeThirdRing.pop();
-    }
+        stack<int> outputRing;
 
-    cout << "First Ring: ";
-    while(!(outputFirstRing.empty()))
-    {
-        cout << outputFirstRing.top() << " ";
-        outputFirstRing.pop();
+        if(i == 0)
+        {
+            fakeRing = fakeFirstRing;
+            cout << "First Ring: ";
+        }
+        else if(i == 1)
+        {
+            fakeRing = fakeSecondRing;
+            cout << "Second Ring: ";
+        }
+        else if(i == 2)
+        {
+            fakeRing = fakeThirdRing;
+            cout << "Third Ring: ";
+        }
+        while (!(fakeRing.empty()))
+        {
+        outputRing.push(fakeRing.top());
+        fakeRing.pop();
+        }
+
+        while(!(outputRing.empty()))
+        {
+            cout << outputRing.top() << " ";
+            outputRing.pop();
+        }
+        cout << endl;
     }
-    cout << endl << "Second Ring: ";
-    while(!(outputSecondRing.empty()))
-    {
-        cout << outputSecondRing.top() << " ";
-        outputSecondRing.pop();
-    }
-    cout << endl << "Third Ring: ";
-    while(!(outputThirdRing.empty()))
-    {
-        cout << outputThirdRing.top() << " ";
-        outputThirdRing.pop();
-    }
-    cout << endl;
 }
 
 void TowerofHanoi()
@@ -84,7 +76,7 @@ void TowerofHanoi()
         cout << firstRing.top() << ' ';
     }
     cout << endl;
-    
+
     while (!(firstRing.empty() && secondRing.empty()))
     {
         while(newHighest != 0)
@@ -100,6 +92,7 @@ void TowerofHanoi()
             else {third = thirdRing.top();}
 
             printAllStacks(firstRing, secondRing, thirdRing);
+            cout << firstRing.top();
 
             if ((third > newHighest || third == 0) && (first == newHighest || second == newHighest))
             {
@@ -107,10 +100,6 @@ void TowerofHanoi()
                 newHighest--;
                 cout << endl << newHighest;
                 continue;
-            }
-            else 
-            {
-                cout << "ERROR! SHOULD NEVER SEE THIS ERROR!";
             }
             break;
         }
