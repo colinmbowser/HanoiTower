@@ -5,6 +5,7 @@
 
 using namespace std;
 
+    //class for the ring stacks and the name for each stack
 class myStack
 {
     public:
@@ -12,6 +13,8 @@ class myStack
         stack<int> ringStack;
 };
 
+    //will get amount of rings to go through the tower of hanoi and make sure
+    //it fits the correct parameters.
 int getNum()
 {
     int blockInputAmount = 0;
@@ -27,6 +30,7 @@ int getNum()
     return blockInputAmount;
 }
 
+    //will output the ring that is sent to this function in order
 void printStack(string ringName, stack<int> printRing)
 {
     stack<int> outputRing;
@@ -45,6 +49,8 @@ void printStack(string ringName, stack<int> printRing)
     cout << endl;
 }
 
+    //will clear the terminal by printing 20 blank lines then it
+    //will output each of the rings at once then freeze the program for 1 second.
 void printAllStacks(myStack firstRing, myStack secondRing, myStack thirdRing)
 {
     cout << string(20, '\n' );
@@ -55,7 +61,7 @@ void printAllStacks(myStack firstRing, myStack secondRing, myStack thirdRing)
 }
 
     // will make variables equal to the top block of each stack,
-    // unless there is no top block in a stack then it will equal to .
+    // unless there is no top block in a stack then it will equal to.
 int changeNum(stack<int> changeNumStack)
 {
     int newNumber = 0;
@@ -64,10 +70,13 @@ int changeNum(stack<int> changeNumStack)
     return newNumber;
 }
 
+    //will solve the even numbered blocks in tower of hanoi by parsing through
+    //and moving each values from one stack to another.
 void isEven(myStack firstRing, myStack secondRing, myStack thirdRing, int blockAmount)
 {
     int first = changeNum(firstRing.ringStack);
     int second = changeNum(secondRing.ringStack);
+
     int third = changeNum(thirdRing.ringStack);
 
     while (!(firstRing.ringStack.empty() && secondRing.ringStack.empty()))
@@ -116,6 +125,8 @@ void isEven(myStack firstRing, myStack secondRing, myStack thirdRing, int blockA
     }
 }
 
+    //will solve the odd numbered blocks in tower of hanoi by parsing through
+    //and moving each values from one stack to another.
 void isOdd(myStack firstRing, myStack secondRing, myStack thirdRing, int blockAmount)
 {
     int first = changeNum(firstRing.ringStack);
@@ -169,6 +180,8 @@ void isOdd(myStack firstRing, myStack secondRing, myStack thirdRing, int blockAm
     }
 }
 
+    //base of tower of hanoi program. Used to declare
+    // values and call functions.
 void TowerofHanoi()
 {
     myStack firstRing;
@@ -191,9 +204,8 @@ void TowerofHanoi()
 
     if (blockAmount % 2 == 1) {isOdd(firstRing, secondRing, thirdRing, blockAmount);}
 }
-    //while (!(firstRing.ringStack.empty() && secondRing.ringStack.empty()))
-    //for (int i = 0; i < ((2^blockAmount) - 1); i++)
 
+    //used to call Tower of Hanoi.
 int main()
 {
     TowerofHanoi();
