@@ -76,7 +76,6 @@ void isEven(myStack firstRing, myStack secondRing, myStack thirdRing, int blockA
 {
     int first = changeNum(firstRing.ringStack);
     int second = changeNum(secondRing.ringStack);
-
     int third = changeNum(thirdRing.ringStack);
 
     while (!(firstRing.ringStack.empty() && secondRing.ringStack.empty()))

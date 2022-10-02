@@ -6,9 +6,7 @@ The Tower of Hanoi is a mathematical puzzel where you have 3 pegs, and a certain
 
 I saw the tower of hanoi in a movie and thought it would be fun to create a program that could solve it. 
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running and a walkthrough of the code.  Focus should be on sharing what you learned about the language syntax.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/m9FN8vJiqrg)
 
 # Development Environment
 
