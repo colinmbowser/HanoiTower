@@ -1,11 +1,9 @@
 # Overview
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
+This is the first real code that I have written in a while so I am trying to get a feel for what I can do in C++ I still need to find a better way to optimilize the code but for now it works.
 
-{Provide a description the software that you wrote to demonstrate the C++ language.}
+The Tower of Hanoi is a mathematical puzzel where you have 3 pegs, and a certain number of rings (usually 5-7) that are all different sizes, the rings are stacked on top of each other on the first peg with the smallest on top to the largest on the bottom. The goal is to move all the rings to the third peg with 2 simple rules, you can only move 1 ring at a time, and you can not put a larger block on a smaller block. This code will solve the tower of hanoi in the fastest way possible following said rules.
 
-
-{Describe your purpose for writing this software.}
 I saw the tower of hanoi in a movie and thought it would be fun to create a program that could solve it. 
 
 {Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running and a walkthrough of the code.  Focus should be on sharing what you learned about the language syntax.}
@@ -25,5 +23,5 @@ I wrote this code in visual studio code and used C++ with iostream, stack, threa
 
 # Future Work
 
-* Optimize the code.
+* Optimize the code (use pointers).
 * Increase the amount of rings in the tower and find the optimal way to solve.
